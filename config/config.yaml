@@ -1,0 +1,8 @@
+# Basic configuration
+
+model:
+  dinov2_variant: "dinov2_vitb14"  # Options: dinov2_vits14, dinov2_vitb14, dinov2_vitl14
+  freeze_backbone: true
+  dropout: 0.1
+
+

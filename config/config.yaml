@@ -16,3 +16,8 @@ data:
   batch_size: 32
   num_workers: 4
   num_labels: 14
+
+peft:
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.1

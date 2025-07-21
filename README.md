@@ -133,7 +133,8 @@ xray-synchrotron-classifier/
 
 ## 🏗️ Architecture Overview
 
-flowchart LR
+```
+mermaid flowchart LR
     %% INPUT
     A[Images<br/>from<br/>Synchrotron]
     A --> B[Pre-processing]
@@ -159,7 +160,7 @@ flowchart LR
     %% STYLE ‑- optional tweaks
     classDef block fill:#f2f2f2,stroke:#333,stroke-width:1px;
     class A,B,C,D1,D2,E1,F,G,H block;
-
+```
 
 
 ## 🧩 Pipeline Components

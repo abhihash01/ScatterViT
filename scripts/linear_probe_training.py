@@ -8,7 +8,7 @@ from src.utils.metrics import MultiLabelMetrics
 from src.utils.losses import FocalLoss
 
 class LinearProbeTrainer:
-    def __init__(self, config_path="config/config.yaml"):
+    def __init__(self, config_path="../config/config.yaml"):
         with open(config_path, 'r') as f:
             self.config = yaml.safe_load(f)
         
@@ -37,8 +37,8 @@ class LinearProbeTrainer:
     
     
     def setup_data(self):
-        # label paths need to be set
-        train_paths = ['../data/train/images']  # need to replace with actual path
+        # will need to be changed according to the data format of annotated data
+        train_paths = ['../data/annotated/train/images']  
         train_labels = torch.rand(len(train_paths), self.config['data']['num_labels'])  # need to replace with actual label reads
         
         self.train_dataset = XRayDataset(train_paths, train_labels)
@@ -73,7 +73,7 @@ class LinearProbeTrainer:
     
 
 
-    
+
     def run(self):
         print("Training Linear Probe...")
         self.linear_model = self.train_model(self.linear_model, "Linear")

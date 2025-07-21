@@ -15,13 +15,37 @@
 - **📊 Comprehensive Metrics**: Hamming accuracy, subset accuracy, micro/macro F1-scores
 - **🏗️ Modular Design**: Clean, extensible codebase with proper separation of concerns
 
+
+## 📝 To Do
+
+### Basic 
+- [ ] Distributed Training with DeepSpeed &/ FSDP
+- [ ] Build a baseline for classification with Resnet-34
+
+### Extensions
+- [ ] MAEpre-training for texture-rich diffraction rings in place of DINOv2
+- [ ] CLIP-style multimodal model pairing images with textual metadata to leverage image text coreferences
+ present in literature
+- [ ] Pretrained encoding part of diffusion based models like Stable Diffusion
+- [ ] SAM-style segmentation FM for peak localisation
+
+### Ultimate
+- [ ] Build a novel FM architecture from scratch by using physics informed neural network modules into each transformer that enforces physical equations as soft constraints and also accounts for scattering specific activations, rather than learn from statistical distribution of image features here.
+- [ ] Use GRPO to optimize a physics-aware reward function to penalize labels violating scattering principles computing group-relative advantages to reinforce physically plausible classifications. 
+- [ ] DiT based rare pattern synthesis to generate high resolution samples of rare patterns to be used in training
+
+### Deployment
+- [ ] ResNet baseline (- 3 ms/img GPU); FM only for less confident scores- softmax < τ (- 15 ms/img)
+- [ ] INT8 quantisation and adapter pruning (30 %) cut memory if speed and effienciecy are the bottlenecks
+- [ ] Active learning loop to collect highscoring samples at run time to add to the training data as soft inputs Semi Supervised learning.
+
+
 ## 📋 Table of Contents
 
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Project Structure](#project-structure)
 - [Pipeline Components](#pipeline-components)
-- [License](#license)
 
 ## 🚀 Installation
 
@@ -54,15 +78,7 @@ pip install deepspeed
 ## ⚡ Quick Start
 
 ### 1. Configure Your Data
-Edit `config/config.yaml` with your dataset paths:
-
-```yaml
-data:
-  train_paths: "data/annotated/real/train/images"
-  train_labels: "data/annotated/real/train/labels.csv"
-  val_paths: "data/annotated/real/val/images" 
-  val_labels: "data/annotated/real/val/labels.csv"
-```
+Populate data in the format mentioned. Update it in the script files. 
 
 ### 2. Run the Complete Pipeline
 ```bash
@@ -159,10 +175,6 @@ xray-synchrotron-classifier/
 - Adjust learning rate and warmup steps
 - Verify label format (multi-hot encoding)
 
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 

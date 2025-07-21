@@ -131,6 +131,37 @@ xray-synchrotron-classifier/
 └── README.md
 ```
 
+## 🏗️ Architecture Overview
+
+flowchart LR
+    %% INPUT
+    A[Images<br/>from<br/>Synchrotron]
+    A --> B[Pre-processing]
+
+    %% BRANCH 1 ───── Probe pathway
+    subgraph "Branch 1 • Probe"
+        direction LR
+        B --> C(Probe)
+        C --> D1["Linear\nHead"]
+        C --> D2["MLP\nHead"]
+        D1 --> E1[Classification]
+        D2 --> E1
+    end
+
+    %% BRANCH 2 ───── SSL + LoRA pathway
+    subgraph "Branch 2 • SSL → LoRA"
+        direction LR
+        B --> F[Self-Supervised\nPre-training]
+        F --> G[LoRA\nFine-tuning]
+        G --> H[Classification]
+    end
+
+    %% STYLE ‑- optional tweaks
+    classDef block fill:#f2f2f2,stroke:#333,stroke-width:1px;
+    class A,B,C,D1,D2,E1,F,G,H block;
+
+
+
 ## 🧩 Pipeline Components
 
 ### 1. **Linear Probing (Baseline)**
